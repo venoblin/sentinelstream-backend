@@ -3,17 +3,13 @@
 <a href="https://github.com/user/repo">
 <img src=".readme-images/project-logo.svg" alt="Logo" height="128px">
 </a>
-<h3 align="center">Repo Name</h3>
+<h3 align="center">SentinelStream</h3>
 <p align="center">
-Short description of project!
-<br/>
-<br/>
-<a href="https://github.com/user/repo/wiki"><strong>Explore the docs »</strong></a>
+SentinelStream is a high-velocity fraud detection engine that processes and visualizes banking transactions in real-time
 <br/>
 <br/>
 <a href="https://www.repo.com">View Demo</a> . 
-<a href="https://github.com/user/repo/issues/new?labels=bug&amp;template=bug_report.md">Report Bug</a> . 
-<a href="https://github.com/user/repo/issues/new?labels=enhancement&amp;&template=feature_request.md">Request Feature</a>
+<a href="https://trello.com/b/K5LCVO34/sentinelstream">Trello Board</a> 
 </p>
 </div>
 
@@ -36,30 +32,17 @@ Table of Contents
 
 ## About The Project
 
-About the project, include images here too.
+SentinelStream is a high-velocity fraud detection engine that processes and visualizes banking transactions in real-time. Built with Node.js and WebSockets, it simulates a live financial network, applying heuristic algorithms to detect anomalies (like velocity attacks) in under 100ms and broadcasting alerts to a live React dashboard.
 
 ### Built With
 
 This project was built with the following technologies:
 
-- <img src="https://img.shields.io/badge/Bash-4EAA25?logo=gnubash&logoColor=fff" alt="Bash" />
-- <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff" alt="Python" />
-- <img src="https://img.shields.io/badge/C++-%2300599C.svg?logo=c%2B%2B&logoColor=white" alt="C++" />
-- <img src="https://img.shields.io/badge/Java-%23ED8B00.svg?logo=openjdk&logoColor=white" alt="Java" />
 - <img src="https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB" alt="React" />
-- <img src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000" alt="JavaScript" />
 - <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff" alt="TypeScript" />
 - <img src="https://img.shields.io/badge/Node.js-6DA55F?logo=node.js&logoColor=white" alt="Node.js" />
 - <img src="https://img.shields.io/badge/Express.js-%23404d59.svg?logo=express&logoColor=%2361DAFB" alt="Express.js" />
-- <img src="https://img.shields.io/badge/Flask-000?logo=flask&logoColor=fff" alt="Flask" />
-- <img src="https://img.shields.io/badge/Sass-C69?logo=sass&logoColor=fff" alt="SASS" />
 - <img src="https://img.shields.io/badge/Postgres-%23316192.svg?logo=postgresql&logoColor=white" alt="PostgreSQL" />
-- <img src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?logo=mongodb&logoColor=white" alt="MongoDB" />
-- <img src="https://img.shields.io/badge/SQLite-%2307405e.svg?logo=sqlite&logoColor=white" alt="SQLite" />
-- <img src="https://img.shields.io/badge/Godot-%23FFFFFF.svg?logo=godot-engine" alt="Godot Engine" />
-- <img src="https://img.shields.io/badge/PowerShell-003B57?style=flat&logo=gnome-terminal&logoColor=white" alt="PowerShell" />
-- <img src="https://img.shields.io/badge/Next.js-black?logo=next.js&logoColor=white" alt="Next.js" />
-- <img src="https://img.shields.io/badge/Tailwind%20CSS-%2338B2AC.svg?logo=tailwind-css&logoColor=white" alt="TailwindCSS" />
 
 ## Getting Started
 
