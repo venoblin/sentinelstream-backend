@@ -12,9 +12,6 @@ SentinelStream is a high-velocity fraud detection engine that processes and visu
 <a href="https://trello.com/b/K5LCVO34/sentinelstream">Trello Board</a> 
 </p>
 </div>
-
-![Contributors](https://img.shields.io/github/contributors/user/repo?color=dark-green) ![Issues](https://img.shields.io/github/issues/user/repo) ![License](https://img.shields.io/github/license/user/repo)
-
 Table of Contents
 
 - [About The Project](#about-the-project)
