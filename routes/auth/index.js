@@ -6,4 +6,4 @@ const router = Router()
 
 router.use('/users', userRoute)
 
-modeule.exports = router
+module.exports = router
