@@ -4,7 +4,7 @@ const controllers = {}
 
 controllers.registerUser = async (req, res) => {
   try {
-    const createdUser = repo.createUser(req.body)
+    const createdUser = await repo.createUser(req.body)
 
     return res.status(200).json({ user: createdUser })
   } catch (error) {
