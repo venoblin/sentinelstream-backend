@@ -22,6 +22,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
+      locationCity: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      locationCountry: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
       riskScore: {
         type: DataTypes.INTEGER,
         allowNull: false
@@ -37,7 +45,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: 'User'
+      modelName: 'User',
+      tableName: 'users'
     }
   )
 
