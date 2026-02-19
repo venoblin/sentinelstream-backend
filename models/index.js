@@ -3,7 +3,7 @@ const { Sequelize, DataTypes } = require('sequelize')
 const sequelize = new Sequelize(process.env.DB_URI)
 
 const models = {
-  user: require('./user')(DataTypes)
+  user: require('./user')(sequelize, DataTypes)
 }
 
 Object.keys(models).forEach((modelName) => {
@@ -12,4 +12,4 @@ Object.keys(models).forEach((modelName) => {
   }
 })
 
-modeule.exports = { sequelize, ...models }
+module.exports = { sequelize, ...models }
