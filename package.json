@@ -20,9 +20,11 @@
   },
   "homepage": "https://github.com/venoblin/sentinelstream-backend#readme",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
     "nodemon": "^3.1.11",
     "pg": "^8.18.0",
     "pg-hstore": "^2.3.4",
