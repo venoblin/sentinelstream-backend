@@ -50,5 +50,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   )
 
+  User.associate = (models) => {
+    User.hasMany(models.FraudRule, {
+      foreignKey: 'creatorId',
+      as: 'createdFraudRules'
+    })
+  }
+
   return User
 }
