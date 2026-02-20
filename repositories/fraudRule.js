@@ -8,4 +8,16 @@ repo.createFraudRule = async (fraudRulePayload) => {
   return fraudRule
 }
 
+repo.findAllFraudRules = async () => {
+  const fraudRules = await FraudRule.findAll()
+
+  return fraudRules
+}
+
+repo.findFraudRuleById = async (id) => {
+  const fraudRule = await FraudRule.findByPk(id)
+
+  return fraudRule
+}
+
 module.exports = repo

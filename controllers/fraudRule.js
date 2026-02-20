@@ -12,4 +12,26 @@ controllers.postFraudRule = async (req, res) => {
   }
 }
 
+controllers.getAllFraudRules = async (req, res) => {
+  try {
+    const allFraudRules = await repo.findAllFraudRules()
+
+    return res.status(200).json({ fraudRules: allFraudRules })
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
+controllers.getFraudRuleById = async (req, res) => {
+  try {
+    const { id } = req.params
+
+    const allFraudRules = await repo.findFraudRuleById(id)
+
+    return res.status(200).json({ fraudRules: allFraudRules })
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
 module.exports = controllers
