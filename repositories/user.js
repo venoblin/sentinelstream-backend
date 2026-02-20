@@ -2,8 +2,8 @@ const { User } = require('../models')
 
 const repo = {}
 
-repo.createUser = async (userPayload) => {
-  const user = await User.create(userPayload)
+repo.createUser = async (payload) => {
+  const user = await User.create(payload)
 
   return user
 }
@@ -18,6 +18,16 @@ repo.findUserById = async (id) => {
   const user = await User.findByPk(id)
 
   return user
+}
+
+repo.updateUserById = async (id, update) => {
+  const [count] = await User.update(update, { where: { id: id } })
+
+  if (count) {
+    return 'Successfully updated user'
+  }
+
+  return "Couldn't find user"
 }
 
 module.exports = repo

@@ -2,8 +2,8 @@ const { FraudRule, User } = require('../models')
 
 const repo = {}
 
-repo.createFraudRule = async (fraudRulePayload) => {
-  const fraudRule = await FraudRule.create(fraudRulePayload)
+repo.createFraudRule = async (payload) => {
+  const fraudRule = await FraudRule.create(payload)
 
   return fraudRule
 }

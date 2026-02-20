@@ -24,4 +24,16 @@ controllers.getUserById = async (req, res) => {
   }
 }
 
+controllers.patchUserById = async (req, res) => {
+  try {
+    const { id } = req.params
+
+    const patchedUser = await repo.updateUserById(id, req.body)
+
+    return res.status(200).json({ user: patchedUser })
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
 module.exports = controllers
