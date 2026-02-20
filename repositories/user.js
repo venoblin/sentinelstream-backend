@@ -8,4 +8,16 @@ repo.createUser = async (userPayload) => {
   return user
 }
 
+repo.findAllUsers = async () => {
+  const users = await User.findAll()
+
+  return users
+}
+
+repo.findUserById = async (id) => {
+  const user = await User.findByPk(id)
+
+  return user
+}
+
 module.exports = repo

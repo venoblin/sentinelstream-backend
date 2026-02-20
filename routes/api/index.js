@@ -1,8 +1,10 @@
 const { Router } = require('express')
-const fraudRuleRoute = require('./fraudRule')
+const fraudRuleRoutes = require('./fraudRule')
+const userRoutes = require('./user')
 
 const router = Router()
 
-router.use('/fraud-rules', fraudRuleRoute)
+router.use('/fraud-rules', fraudRuleRoutes)
+router.use('/users', userRoutes)
 
 module.exports = router
