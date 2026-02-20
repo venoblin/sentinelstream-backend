@@ -6,7 +6,9 @@ controllers.registerUser = async (req, res) => {
   try {
     let createdUser = await repo.createUser(req.body)
 
-    return res.status(200).json({ user: createdUser })
+    delete createdUser.dataValues.passwordHash
+
+    return res.status(201).json({ user: createdUser })
   } catch (error) {
     return res.status(500).json({ error: error.message })
   }
