@@ -5,6 +5,8 @@ const repo = {}
 repo.createUser = async (userPayload) => {
   const user = await User.create(userPayload)
 
+  delete user.dataValues.passwordHash
+
   return user
 }
 
