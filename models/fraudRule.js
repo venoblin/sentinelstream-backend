@@ -20,6 +20,10 @@ module.exports = (sequelize, DataTypes) => {
       logicJson: {
         type: DataTypes.JSON,
         allowNull: false
+      },
+      creatorId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
       }
     },
     {
