@@ -4,7 +4,7 @@ const controllers = {}
 
 controllers.getAllUsers = async (req, res) => {
   try {
-    const users = await repo.findAllUsers()
+    const users = await repo.findAllUsers(req.query)
 
     return res.status(200).json({ users: users })
   } catch (error) {

@@ -8,8 +8,8 @@ repo.createUser = async (userPayload) => {
   return user
 }
 
-repo.findAllUsers = async () => {
-  const users = await User.findAll()
+repo.findAllUsers = async (options) => {
+  const users = await User.findAll({ where: { ...options } })
 
   return users
 }
