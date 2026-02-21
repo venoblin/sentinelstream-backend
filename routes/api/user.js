@@ -1,10 +1,26 @@
 const { Router } = require('express')
 const controllers = require('../../controllers/user')
+const middlewares = require('../../middlewares')
 
 const router = Router()
 
-router.get('/', controllers.getAllUsers)
-router.get('/:id', controllers.getUserById)
-router.patch('/:id', controllers.patchUserById)
+router.get(
+  '/',
+  middlewares.stripToken,
+  middlewares.verifyToken,
+  controllers.getAllUsers
+)
+router.get(
+  '/:id',
+  middlewares.stripToken,
+  middlewares.verifyToken,
+  controllers.getUserById
+)
+router.patch(
+  '/:id',
+  middlewares.stripToken,
+  middlewares.verifyToken,
+  controllers.patchUserById
+)
 
 module.exports = router
