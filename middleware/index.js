@@ -29,9 +29,10 @@ middleware.verifyToken = (req, res, next) => {
       res.locals.payload = payload
       return next()
     }
-    res.status(401).json({ status: 'Error', msg: 'Unauthorized' })
-  } catch (err) {
-    res.status(401).json({ status: 'Error', msg: 'Unauthorized' })
+
+    return res.status(401).json({ error: 'Unauthorized' })
+  } catch {
+    return res.status(401).json({ error: 'Unauthorized' })
   }
 }
 
@@ -42,8 +43,8 @@ middleware.stripToken = (req, res, next) => {
       res.locals.token = token
       return next()
     }
-  } catch (err) {
-    res.status(401).json({ status: 'Error', msg: 'Unauthorized' })
+  } catch {
+    return res.status(401).json({ error: 'Unauthorized' })
   }
 }
 
