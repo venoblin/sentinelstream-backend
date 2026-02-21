@@ -1,4 +1,4 @@
-const { User } = require('../models/index2')
+const { User } = require('../models/index')
 
 const repo = {}
 
