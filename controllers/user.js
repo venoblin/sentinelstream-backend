@@ -7,7 +7,7 @@ controllers.getAllUsers = async (req, res) => {
     const users = await repo.findAllUsers(req.query)
 
     const cleanedUsers = users.map((user) => {
-      delete user.dataValues.passwordHash
+      delete user.dataValues.password
 
       return user
     })
@@ -24,7 +24,7 @@ controllers.getUserById = async (req, res) => {
 
     const user = await repo.findUserById(id)
 
-    delete user.dataValues.passwordHash
+    delete user.dataValues.password
 
     return res.status(200).json({ user: user })
   } catch (error) {
