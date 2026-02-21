@@ -6,13 +6,13 @@ const APP_SECRET = process.env.APP_SECRET
 
 const middleware = {}
 
-middleware.hashPassword = (password) => {
-  const hash = bcrypt.hash(password, SALT_ROUNDS)
+middleware.hashPassword = async (password) => {
+  const hash = await bcrypt.hash(password, SALT_ROUNDS)
   return hash
 }
 
-middleware.comparePassword = (password, storedPassword) => {
-  const match = bcrypt.compare(password, storedPassword)
+middleware.comparePassword = async (password, storedPassword) => {
+  const match = await bcrypt.compare(password, storedPassword)
   return match
 }
 
