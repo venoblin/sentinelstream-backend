@@ -20,6 +20,7 @@ router.patch(
   '/:id',
   middlewares.stripToken,
   middlewares.verifyToken,
+  middlewares.verifyUser,
   controllers.patchUserById
 )
 
