@@ -8,12 +8,14 @@ router.get(
   '/',
   middlewares.stripToken,
   middlewares.verifyToken,
+  middlewares.verifyRole('analyst'),
   controllers.getAllUsers
 )
 router.get(
   '/:id',
   middlewares.stripToken,
   middlewares.verifyToken,
+  middlewares.verifyUser,
   controllers.getUserById
 )
 router.patch(

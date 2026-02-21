@@ -24,6 +24,10 @@ controllers.getUserById = async (req, res) => {
 
     const user = await repo.findUserById(id)
 
+    if (!user) {
+      return res.status(404).json({ user: 'Not found' })
+    }
+
     delete user.dataValues.password
 
     return res.status(200).json({ user: user })
