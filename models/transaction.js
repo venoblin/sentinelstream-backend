@@ -45,6 +45,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'transactionId',
       as: 'transaction'
     })
+
+    Transaction.belongsTo(models.User, {
+      foreignKey: 'userId',
+      as: 'user'
+    })
   }
 
   return Transaction
