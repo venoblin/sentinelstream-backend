@@ -29,7 +29,7 @@ middlewares.stripToken = (req, res, next) => {
       return next()
     }
   } catch {
-    return res.status(401).json({ error: 'Unauthorized' })
+    return res.status(500).json({ error: 'Internal server error' })
   }
 }
 
@@ -44,7 +44,7 @@ middlewares.verifyToken = (req, res, next) => {
 
     return res.status(401).json({ error: 'Unauthorized' })
   } catch {
-    return res.status(401).json({ error: 'Unauthorized' })
+    return res.status(500).json({ error: 'Internal server error' })
   }
 }
 
@@ -59,7 +59,7 @@ middlewares.verifyRole = (requiredRole) => {
 
       return res.status(403).json({ error: 'Forbidden' })
     } catch {
-      return res.status(403).json({ error: 'Forbidden' })
+      return res.status(500).json({ error: 'Internal server error' })
     }
   }
 }
@@ -67,15 +67,15 @@ middlewares.verifyRole = (requiredRole) => {
 middlewares.verifyUser = (req, res, next) => {
   try {
     const { payload } = res.locals
-    const { id } = res.params
+    const { id } = req.params
 
-    if (payload && payload.id === id) {
+    if (payload && payload.id === parseInt(id)) {
       return next()
     }
 
-    return res.status(403).json({ error: 'Unauthorized' })
+    return res.status(403).json({ error: 'Forbidden' })
   } catch {
-    return res.status(403).json({ error: 'Unauthorized' })
+    return res.status(500).json({ error: 'Internal server error' })
   }
 }
 

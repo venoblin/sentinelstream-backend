@@ -42,6 +42,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'creatorId',
       as: 'creator'
     })
+
+    FraudRule.hasMany(models.AuditLog, {
+      foreignKey: 'fraudRuleId',
+      as: 'fraudRule'
+    })
   }
 
   return FraudRule
