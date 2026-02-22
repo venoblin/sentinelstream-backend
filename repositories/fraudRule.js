@@ -8,9 +8,10 @@ repo.createFraudRule = async (payload) => {
   return fraudRule
 }
 
-repo.findAllFraudRules = async () => {
+repo.findAllFraudRules = async (options) => {
   const fraudRules = await FraudRule.findAll({
-    include: [{ model: User, as: 'creator' }]
+    include: [{ model: User, as: 'creator' }],
+    where: { isActive: true, ...options }
   })
 
   return fraudRules

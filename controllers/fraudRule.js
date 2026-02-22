@@ -15,14 +15,14 @@ controllers.postFraudRule = async (req, res) => {
 
 controllers.getAllFraudRules = async (req, res) => {
   try {
-    const fraudRules = await repo.findAllFraudRules()
+    const fraudRules = await repo.findAllFraudRules(req.query)
 
     const cleanedFraudRules = fraudRules.map((f) => {
-      const plainFraudRules = f.toJSON()
+      const plainFraudRule = f.toJSON()
 
       const fraudRule = {
-        ...plainFraudRules,
-        user: sanitizeUser(f.user)
+        ...plainFraudRule,
+        creator: sanitizeUser(plainFraudRule.creator)
       }
 
       return fraudRule
@@ -49,7 +49,7 @@ controllers.getFraudRuleById = async (req, res) => {
     return res.status(200).json({
       fraudRule: {
         ...plainFraudRule,
-        user: sanitizeUser(plainFraudRule.user)
+        creator: sanitizeUser(plainFraudRule.creator)
       }
     })
   } catch {
