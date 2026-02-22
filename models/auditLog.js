@@ -55,6 +55,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'fraudRuleId',
       as: 'fraudRule'
     })
+
+    AuditLog.belongsTo(models.Transaction, {
+      foreignKey: 'transactionId',
+      as: 'transaction'
+    })
   }
 
   return AuditLog
