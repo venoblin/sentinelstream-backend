@@ -8,17 +8,26 @@ module.exports = (sequelize, DataTypes) => {
       transactionId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: { model: 'transactions', key: 'id' }
+        references: {
+          model: 'transactions',
+          key: 'id'
+        }
       },
       analystId: {
         type: DataTypes.INTEGER,
         allowNull: true,
-        references: { model: 'users', key: 'id' }
+        references: {
+          model: 'users',
+          key: 'id'
+        }
       },
       fraudRuleId: {
         type: DataTypes.INTEGER,
         allowNull: true,
-        references: { model: 'fraudRules', key: 'id' }
+        references: {
+          model: 'fraudRules',
+          key: 'id'
+        }
       },
       actionsTaken: {
         type: DataTypes.ENUM(

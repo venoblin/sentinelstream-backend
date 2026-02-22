@@ -24,4 +24,10 @@ repo.findFraudRuleById = async (id) => {
   return fraudRule
 }
 
+repo.updateFraudRuleById = async (id, update) => {
+  const [count] = await FraudRule.update(update, { where: { id: id } })
+
+  return count
+}
+
 module.exports = repo

@@ -25,5 +25,12 @@ router.get(
   middlewares.verifyAnalyst,
   controllers.getFraudRuleById
 )
+router.patch(
+  '/:id',
+  middlewares.stripToken,
+  middlewares.verifyToken,
+  middlewares.verifyAnalyst,
+  controllers.patchFraudRuleById
+)
 
 module.exports = router

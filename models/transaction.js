@@ -8,11 +8,17 @@ module.exports = (sequelize, DataTypes) => {
       userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: { model: 'users', key: 'id' }
+        references: {
+          model: 'users',
+          key: 'id'
+        }
       },
       amount: {
         type: DataTypes.DECIMAL,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          min: 0
+        }
       },
       currency: {
         type: DataTypes.STRING,

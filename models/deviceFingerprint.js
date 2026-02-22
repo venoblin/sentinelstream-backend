@@ -8,7 +8,10 @@ module.exports = (sequelize, DataTypes) => {
       userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: { model: 'users', key: 'id' }
+        references: {
+          model: 'users',
+          key: 'id'
+        }
       },
       deviceHash: {
         type: DataTypes.STRING,
@@ -24,11 +27,16 @@ module.exports = (sequelize, DataTypes) => {
       },
       trustScore: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          min: 0,
+          max: 100
+        }
       },
       isBanned: {
         type: DataTypes.BOOLEAN,
-        allowNull: false
+        allowNull: false,
+        defaultValue: false
       }
     },
     {

@@ -11,11 +11,16 @@ module.exports = (sequelize, DataTypes) => {
       },
       riskScoreImpact: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          min: 0,
+          max: 100
+        }
       },
       isActive: {
         type: DataTypes.BOOLEAN,
-        allowNull: false
+        allowNull: false,
+        defaultValue: true
       },
       logicJson: {
         type: DataTypes.JSON,
@@ -24,7 +29,23 @@ module.exports = (sequelize, DataTypes) => {
       creatorId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: { model: 'users', key: 'id' }
+        references: {
+          model: 'users',
+          key: 'id'
+        }
+      },
+      version: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 1
+      },
+      previousVersionId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'fraudRules',
+          key: 'id'
+        }
       }
     },
     {
@@ -43,6 +64,16 @@ module.exports = (sequelize, DataTypes) => {
     FraudRule.hasMany(models.AuditLog, {
       foreignKey: 'fraudRuleId',
       as: 'auditLogs'
+    })
+
+    FraudRule.belongsTo(models.FraudRule, {
+      foreignKey: 'previousVersionId',
+      as: 'previousVersion'
+    })
+
+    FraudRule.hasOne(models.FraudRule, {
+      foreignKey: 'previousVersionId',
+      as: 'nextVersion'
     })
   }
 
