@@ -29,7 +29,7 @@ controllers.loginUser = async (req, res) => {
     }
 
     return res.status(401).json({ error: 'Unauthorized' })
-  } catch (error) {
+  } catch {
     return res.status(500).json({ error: 'Internal server error' })
   }
 }

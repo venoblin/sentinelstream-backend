@@ -10,7 +10,7 @@ controllers.getAllUsers = async (req, res) => {
     const cleanedUsers = users.map(sanitizeUser)
 
     return res.status(200).json({ users: cleanedUsers })
-  } catch (error) {
+  } catch {
     return res.status(500).json({ error: 'Internal server error' })
   }
 }
@@ -26,7 +26,7 @@ controllers.getUserById = async (req, res) => {
     }
 
     return res.status(200).json({ user: sanitizeUser(user) })
-  } catch (error) {
+  } catch {
     return res.status(500).json({ error: 'Internal server error' })
   }
 }
@@ -42,7 +42,7 @@ controllers.patchUserById = async (req, res) => {
     }
 
     return res.status(200).json({ message: 'Successfully updated user' })
-  } catch (error) {
+  } catch {
     return res.status(500).json({ error: 'Internal server error' })
   }
 }

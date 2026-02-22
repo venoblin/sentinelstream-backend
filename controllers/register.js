@@ -16,7 +16,7 @@ controllers.registerUser = async (req, res) => {
     })
 
     return res.status(201).json({ user: sanitizeUser(createdUser) })
-  } catch (error) {
+  } catch {
     return res.status(500).json({ error: 'Internal server error' })
   }
 }
