@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: 'users',
+          model: 'User',
           key: 'id'
         }
       },
@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: true,
         references: {
-          model: 'fraudRules',
+          model: 'FraudRule',
           key: 'id'
         }
       }
@@ -51,7 +51,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'FraudRule',
-      tableName: 'fraudRules'
+      tableName: 'fraud_rules'
     }
   )
 
