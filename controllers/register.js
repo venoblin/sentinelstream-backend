@@ -10,12 +10,12 @@ controllers.registerUser = async (req, res) => {
 
     const hash = await hashPassword(password)
 
-    let createdUser = await repo.createUser({
+    let user = await repo.createUser({
       ...req.body,
       password: hash
     })
 
-    return res.status(201).json({ user: sanitizeUser(createdUser) })
+    return res.status(201).json({ user: sanitizeUser(user) })
   } catch {
     return res.status(500).json({ error: 'Internal server error' })
   }

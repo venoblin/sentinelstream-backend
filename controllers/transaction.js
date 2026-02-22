@@ -19,8 +19,7 @@ controllers.getAllTransactions = async (req, res) => {
     })
 
     return res.status(200).json({ transactions: cleanedTransactions })
-  } catch (e) {
-    console.error(e)
+  } catch {
     return res.status(500).json({ error: 'Internal server error' })
   }
 }
@@ -47,7 +46,7 @@ controllers.getTransactionById = async (req, res) => {
 
     const plainTransaction = transaction.toJSON()
 
-    return res.status(201).json({
+    return res.status(200).json({
       transaction: {
         ...plainTransaction,
         user: sanitizeUser(plainTransaction.user)
