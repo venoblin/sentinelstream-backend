@@ -1,5 +1,6 @@
 const repo = require('../repositories/user')
 const { hashPassword } = require('../middlewares')
+const { sanitizeUser } = require('../utils')
 
 const controllers = {}
 
@@ -14,11 +15,9 @@ controllers.registerUser = async (req, res) => {
       password: hash
     })
 
-    delete createdUser.dataValues.password
-
-    return res.status(201).json({ user: createdUser })
+    return res.status(201).json({ user: sanitizeUser(createdUser) })
   } catch (error) {
-    return res.status(500).json({ error: error.message })
+    return res.status(500).json({ error: 'Internal server error' })
   }
 }
 

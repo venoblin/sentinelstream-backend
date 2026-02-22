@@ -1,4 +1,5 @@
 const repo = require('../repositories/user')
+const { sanitizeUser } = require('../utils')
 
 const controllers = {}
 
@@ -6,15 +7,11 @@ controllers.getAllUsers = async (req, res) => {
   try {
     const users = await repo.findAllUsers(req.query)
 
-    const cleanedUsers = users.map((user) => {
-      delete user.dataValues.password
-
-      return user
-    })
+    const cleanedUsers = users.map(sanitizeUser)
 
     return res.status(200).json({ users: cleanedUsers })
   } catch (error) {
-    return res.status(500).json({ error: error.message })
+    return res.status(500).json({ error: 'Internal server error' })
   }
 }
 
@@ -25,14 +22,12 @@ controllers.getUserById = async (req, res) => {
     const user = await repo.findUserById(id)
 
     if (!user) {
-      return res.status(404).json({ user: 'Not found' })
+      return res.status(404).json({ error: 'Not found' })
     }
 
-    delete user.dataValues.password
-
-    return res.status(200).json({ user: user })
+    return res.status(200).json({ user: sanitizeUser(user) })
   } catch (error) {
-    return res.status(500).json({ error: error.message })
+    return res.status(500).json({ error: 'Internal server error' })
   }
 }
 
@@ -42,9 +37,13 @@ controllers.patchUserById = async (req, res) => {
 
     const patchedUser = await repo.updateUserById(id, req.body)
 
-    return res.status(200).json({ user: patchedUser })
+    if (!patchedUser) {
+      return res.status(404).json({ error: 'Not Found' })
+    }
+
+    return res.status(200).json({ message: 'Successfully updated user' })
   } catch (error) {
-    return res.status(500).json({ error: error.message })
+    return res.status(500).json({ error: 'Internal server error' })
   }
 }
 

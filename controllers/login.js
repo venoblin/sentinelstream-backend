@@ -1,5 +1,6 @@
 const repo = require('../repositories/user')
 const { comparePassword, createToken } = require('../middlewares')
+const { sanitizeUser } = require('../utils')
 
 const controllers = {}
 
@@ -9,21 +10,27 @@ controllers.loginUser = async (req, res) => {
 
     const user = await repo.findUserByEmail(email)
 
+    if (!user) {
+      return res.status(401).json({ error: 'Invalid email or password' })
+    }
+
     const isAuthenticated = await comparePassword(password, user.password)
 
     if (isAuthenticated) {
       const payload = {
         id: user.id,
-        email: user.email
+        role: user.role
       }
 
+      const sanitizedUser = sanitizeUser(user)
+
       const token = createToken(payload)
-      return res.status(201).json({ user: payload, token })
+      return res.status(201).json({ user: sanitizedUser, token })
     }
 
     return res.status(401).json({ error: 'Unauthorized' })
   } catch (error) {
-    return res.status(500).json({ error: error.message })
+    return res.status(500).json({ error: 'Internal server error' })
   }
 }
 

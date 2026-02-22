@@ -23,21 +23,13 @@ repo.findUserById = async (id) => {
 repo.updateUserById = async (id, update) => {
   const [count] = await User.update(update, { where: { id: id } })
 
-  if (count) {
-    return 'Successfully updated user'
-  }
-
-  throw new Error("Couldn't find user")
+  return count
 }
 
 repo.findUserByEmail = async (email) => {
   const user = await User.findOne({ where: { email: email } })
 
-  if (user) {
-    return user
-  }
-
-  throw new Error("Couldn't find user")
+  return user
 }
 
 module.exports = repo
