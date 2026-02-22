@@ -10,7 +10,7 @@ controllers.loginUser = async (req, res) => {
 
     const user = await repo.findUserByEmail(email)
 
-    if (!user) {
+    if (!user || !user.isActive) {
       return res.status(401).json({ error: 'Invalid email or password' })
     }
 
