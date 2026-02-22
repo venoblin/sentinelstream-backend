@@ -48,23 +48,21 @@ middlewares.verifyToken = (req, res, next) => {
   }
 }
 
-middlewares.verifyRole = (requiredRole) => {
-  return (req, res, next) => {
-    try {
-      const { payload } = res.locals
+middlewares.verifyAnalyst = (req, res, next) => {
+  try {
+    const { payload } = res.locals
 
-      if (payload && payload.role === requiredRole) {
-        return next()
-      }
-
-      return res.status(403).json({ error: 'Forbidden' })
-    } catch {
-      return res.status(500).json({ error: 'Internal server error' })
+    if (payload && payload.role === 'analyst') {
+      return next()
     }
+
+    return res.status(403).json({ error: 'Forbidden' })
+  } catch {
+    return res.status(500).json({ error: 'Internal server error' })
   }
 }
 
-middlewares.verifyUser = (req, res, next) => {
+middlewares.verifyUserId = (req, res, next) => {
   try {
     const { payload } = res.locals
     const { id } = req.params

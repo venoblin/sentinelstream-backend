@@ -8,21 +8,21 @@ router.get(
   '/',
   middlewares.stripToken,
   middlewares.verifyToken,
-  middlewares.verifyRole('analyst'),
+  middlewares.verifyAnalyst,
   controllers.getAllUsers
 )
 router.get(
   '/:id',
   middlewares.stripToken,
   middlewares.verifyToken,
-  middlewares.verifyUser,
+  middlewares.verifyUserId,
   controllers.getUserById
 )
 router.patch(
   '/:id',
   middlewares.stripToken,
   middlewares.verifyToken,
-  middlewares.verifyUser,
+  middlewares.verifyUserId,
   controllers.patchUserById
 )
 

@@ -8,21 +8,21 @@ router.post(
   '/',
   middlewares.stripToken,
   middlewares.verifyToken,
-  middlewares.verifyRole('analyst'),
+  middlewares.verifyAnalyst,
   controllers.postFraudRule
 )
 router.get(
   '/',
   middlewares.stripToken,
   middlewares.verifyToken,
-  middlewares.verifyRole('analyst'),
+  middlewares.verifyAnalyst,
   controllers.getAllFraudRules
 )
 router.get(
   '/:id',
   middlewares.stripToken,
   middlewares.verifyToken,
-  middlewares.verifyRole('analyst'),
+  middlewares.verifyAnalyst,
   controllers.getFraudRuleById
 )
 

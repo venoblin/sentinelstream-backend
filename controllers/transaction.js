@@ -35,4 +35,23 @@ controllers.postTransaction = async (req, res) => {
   }
 }
 
+controllers.getTransactionById = async (req, res) => {
+  try {
+    const { id } = req.params
+
+    const transaction = await repo.findTransactionById(id)
+
+    const plainTransaction = transaction.toJSON()
+
+    return res.status(201).json({
+      transaction: {
+        ...plainTransaction,
+        user: sanitizeUser(plainTransaction.user)
+      }
+    })
+  } catch {
+    return res.status(500).json({ error: 'Internal server error' })
+  }
+}
+
 module.exports = controllers

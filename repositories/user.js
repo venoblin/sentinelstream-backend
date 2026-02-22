@@ -1,4 +1,4 @@
-const { User } = require('../models/index')
+const { User, Transaction } = require('../models/index')
 
 const repo = {}
 
@@ -15,7 +15,9 @@ repo.findAllUsers = async (options) => {
 }
 
 repo.findUserById = async (id) => {
-  const user = await User.findByPk(id)
+  const user = await User.findByPk(id, {
+    include: [{ model: Transaction, as: 'transactions' }]
+  })
 
   return user
 }

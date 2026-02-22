@@ -16,4 +16,12 @@ repo.findAllTransactions = async () => {
   return transactions
 }
 
+repo.findTransactionById = async (id) => {
+  const transaction = await Transaction.findByPk(id, {
+    include: [{ model: User, as: 'user' }]
+  })
+
+  return transaction
+}
+
 module.exports = repo

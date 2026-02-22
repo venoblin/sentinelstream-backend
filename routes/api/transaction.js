@@ -16,5 +16,11 @@ router.get(
   middlewares.verifyToken,
   controllers.getAllTransactions
 )
+router.get(
+  '/:id',
+  middlewares.stripToken,
+  middlewares.verifyToken,
+  controllers.getTransactionById
+)
 
 module.exports = router
