@@ -25,5 +25,12 @@ router.patch(
   middlewares.verifyUserId,
   controllers.patchUserById
 )
+router.delete(
+  '/:id',
+  middlewares.stripToken,
+  middlewares.verifyToken,
+  middlewares.verifyUserId,
+  controllers.deleteUserById
+)
 
 module.exports = router

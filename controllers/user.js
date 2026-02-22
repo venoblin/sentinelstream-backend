@@ -51,4 +51,26 @@ controllers.patchUserById = async (req, res) => {
   }
 }
 
+controllers.deleteUserById = async (req, res) => {
+  try {
+    const { id } = req.params
+
+    const deletedUser = await repo.updateUserById(id, {
+      email: `deleted-${id}@anonymized.local`,
+      firstName: 'Deleted',
+      lastName: 'User',
+      password: 'DELETED_ACCOUNT_NO_ACCESS',
+      locationCity: 'REDACTED'
+    })
+
+    if (!deletedUser) {
+      return res.status(404).json({ error: 'Not Found' })
+    }
+
+    return res.status(200).json({ message: 'Successfully updated user' })
+  } catch {
+    return res.status(500).json({ error: 'Internal server error' })
+  }
+}
+
 module.exports = controllers
