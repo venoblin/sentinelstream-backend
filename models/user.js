@@ -58,17 +58,17 @@ module.exports = (sequelize, DataTypes) => {
 
     User.hasMany(models.AuditLog, {
       foreignKey: 'analystId',
-      as: 'analyst'
+      as: 'auditLogs'
     })
 
     User.hasMany(models.Transaction, {
       foreignKey: 'userId',
-      as: 'user'
+      as: 'transactions'
     })
 
     User.hasMany(models.DeviceFingerprint, {
       foreignKey: 'userId',
-      as: 'user'
+      as: 'deviceFingerprints'
     })
   }
 

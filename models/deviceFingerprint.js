@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
 
   DeviceFingerprint.associate = (models) => {
     DeviceFingerprint.belongsTo(models.User, {
-      foreignKey: userId,
+      foreignKey: 'userId',
       as: 'user'
     })
   }

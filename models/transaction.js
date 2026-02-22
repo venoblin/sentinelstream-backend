@@ -50,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
   Transaction.associate = (models) => {
     Transaction.hasMany(models.AuditLog, {
       foreignKey: 'transactionId',
-      as: 'transaction'
+      as: 'auditLogs'
     })
 
     Transaction.belongsTo(models.User, {
