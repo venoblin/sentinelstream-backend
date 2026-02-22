@@ -60,7 +60,8 @@ controllers.deleteUserById = async (req, res) => {
       firstName: 'Deleted',
       lastName: 'User',
       password: 'DELETED_ACCOUNT_NO_ACCESS',
-      locationCity: 'REDACTED'
+      locationCity: 'REDACTED',
+      isActive: false
     })
 
     if (!deletedUser) {

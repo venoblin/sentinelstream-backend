@@ -9,7 +9,7 @@ repo.createUser = async (payload) => {
 }
 
 repo.findAllUsers = async (options) => {
-  const users = await User.findAll({ where: { ...options } })
+  const users = await User.findAll({ where: { isActive: true, ...options } })
 
   return users
 }
