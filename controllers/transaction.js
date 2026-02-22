@@ -41,6 +41,10 @@ controllers.getTransactionById = async (req, res) => {
 
     const transaction = await repo.findTransactionById(id)
 
+    if (!transaction) {
+      return res.status(404).json({ error: 'Not found' })
+    }
+
     const plainTransaction = transaction.toJSON()
 
     return res.status(201).json({

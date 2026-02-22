@@ -26,9 +26,13 @@ controllers.getFraudRuleById = async (req, res) => {
   try {
     const { id } = req.params
 
-    const allFraudRules = await repo.findFraudRuleById(id)
+    const fraudRule = await repo.findFraudRuleById(id)
 
-    return res.status(200).json({ fraudRules: allFraudRules })
+    if (!fraudRule) {
+      return res.status(404).json({ error: 'Not found' })
+    }
+
+    return res.status(200).json({ fraudRule: fraudRule })
   } catch {
     return res.status(500).json({ error: 'Internal server error' })
   }
