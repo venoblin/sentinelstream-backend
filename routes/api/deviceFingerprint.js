@@ -22,5 +22,11 @@ router.get(
   middlewares.verifyToken,
   controllers.getDeviceFingerprintById
 )
+router.patch(
+  '/:id',
+  middlewares.stripToken,
+  middlewares.verifyToken,
+  controllers.patchDeviceFingerprintById
+)
 
 module.exports = router

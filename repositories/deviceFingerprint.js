@@ -26,4 +26,12 @@ repo.findDeviceFingerprintById = async (id) => {
   return deviceFingerprint
 }
 
+repo.updateDeviceFingerprintById = async (id, update) => {
+  const [count] = await DeviceFingerprint.update(id, {
+    where: { id: id }
+  })
+
+  return count
+}
+
 module.exports = repo

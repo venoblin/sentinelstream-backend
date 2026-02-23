@@ -39,10 +39,10 @@ controllers.patchUserById = async (req, res) => {
   try {
     const { id } = req.params
 
-    const patchedUser = await repo.updateUserById(id, req.body)
+    const count = await repo.updateUserById(id, req.body)
 
-    if (!patchedUser) {
-      return res.status(404).json({ error: 'Not Found' })
+    if (!count) {
+      return res.status(404).json({ error: 'Not found' })
     }
 
     return res.status(200).json({ message: 'Successfully updated user' })
