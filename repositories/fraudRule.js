@@ -2,6 +2,8 @@ const { FraudRule, User } = require('../models')
 
 const repo = {}
 
+const include = [{ model: User, as: 'creator' }]
+
 repo.createFraudRule = async (payload) => {
   const fraudRule = await FraudRule.create(payload)
 
@@ -10,7 +12,7 @@ repo.createFraudRule = async (payload) => {
 
 repo.findAllFraudRules = async (options) => {
   const fraudRules = await FraudRule.findAll({
-    include: [{ model: User, as: 'creator' }],
+    include: include,
     where: { isActive: true, ...options }
   })
 
@@ -19,7 +21,7 @@ repo.findAllFraudRules = async (options) => {
 
 repo.findFraudRuleById = async (id) => {
   const fraudRule = await FraudRule.findByPk(id, {
-    include: [{ model: User, as: 'creator' }]
+    include: include
   })
 
   return fraudRule

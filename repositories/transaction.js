@@ -2,6 +2,8 @@ const { Transaction, User } = require('../models')
 
 const repo = {}
 
+const include = [{ model: User, as: 'user' }]
+
 repo.createTransaction = async (payload) => {
   const transaction = await Transaction.create(payload)
 
@@ -10,7 +12,7 @@ repo.createTransaction = async (payload) => {
 
 repo.findAllTransactions = async () => {
   const transactions = await Transaction.findAll({
-    include: [{ model: User, as: 'user' }]
+    include: include
   })
 
   return transactions
@@ -18,7 +20,7 @@ repo.findAllTransactions = async () => {
 
 repo.findTransactionById = async (id) => {
   const transaction = await Transaction.findByPk(id, {
-    include: [{ model: User, as: 'user' }]
+    include: include
   })
 
   return transaction

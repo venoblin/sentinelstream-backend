@@ -2,6 +2,8 @@ const { DeviceFingerprint, User } = require('../models')
 
 const repo = {}
 
+const include = [{ model: User, as: 'user' }]
+
 repo.createDeviceFingerprint = async (payload) => {
   const deviceFingerprint = await DeviceFingerprint.create(payload)
 
@@ -10,7 +12,7 @@ repo.createDeviceFingerprint = async (payload) => {
 
 repo.findAllDeviceFingerprints = async () => {
   const deviceFingerprints = await DeviceFingerprint.findAll({
-    include: [{ model: User, as: 'user' }]
+    include: include
   })
 
   return deviceFingerprints
@@ -18,7 +20,7 @@ repo.findAllDeviceFingerprints = async () => {
 
 repo.findDeviceFingerprintById = async (id) => {
   const deviceFingerprint = await DeviceFingerprint.findByPk(id, {
-    include: [{ model: User, as: 'user' }]
+    include: include
   })
 
   return deviceFingerprint
