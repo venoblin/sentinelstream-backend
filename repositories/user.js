@@ -1,6 +1,19 @@
-const { User, Transaction } = require('../models/index')
+const {
+  User,
+  Transaction,
+  DeviceFingerprint,
+  FraudRule,
+  AuditLog
+} = require('../models/index')
 
 const repo = {}
+
+const include = [
+  { model: Transaction, as: 'transactions' },
+  { model: DeviceFingerprint, as: 'devices' },
+  { model: FraudRule, as: 'createdFraudRules' },
+  { model: AuditLog, as: 'auditLogs' }
+]
 
 repo.createUser = async (payload) => {
   const user = await User.create(payload)
@@ -9,14 +22,17 @@ repo.createUser = async (payload) => {
 }
 
 repo.findAllUsers = async (options) => {
-  const users = await User.findAll({ where: { isActive: true, ...options } })
+  const users = await User.findAll({
+    include: include,
+    where: { isActive: true, ...options }
+  })
 
   return users
 }
 
 repo.findUserById = async (id) => {
   const user = await User.findByPk(id, {
-    include: [{ model: Transaction, as: 'transactions' }]
+    include: include
   })
 
   return user
