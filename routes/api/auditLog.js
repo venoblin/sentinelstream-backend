@@ -4,6 +4,13 @@ const middlewares = require('../../middlewares')
 
 const router = Router()
 
+router.post(
+  '/',
+  middlewares.stripToken,
+  middlewares.verifyToken,
+  middlewares.verifyAnalyst,
+  controllers.postAuditLog
+)
 router.get(
   '/',
   middlewares.stripToken,

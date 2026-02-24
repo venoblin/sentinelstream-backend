@@ -3,6 +3,16 @@ const { sanitizeUser } = require('../utils')
 
 const controllers = {}
 
+controllers.postAuditLog = async (req, res) => {
+  try {
+    const auditLog = await repo.createAuditLog(req.body)
+
+    return res.status(201).json({ auditLog: auditLog })
+  } catch {
+    return res.status(500).json({ error: 'Internal server error' })
+  }
+}
+
 controllers.getAllAuditLogs = async (req, res) => {
   try {
     const auditLogs = await repo.findAllAuditLogs(req.query)

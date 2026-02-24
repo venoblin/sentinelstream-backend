@@ -27,6 +27,8 @@ repo.findAuditLogById = async (id) => {
   const auditLog = await AuditLog.findByPk(id, {
     include: include
   })
+
+  return auditLog
 }
 
 module.exports = repo
