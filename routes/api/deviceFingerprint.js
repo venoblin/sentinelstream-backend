@@ -28,5 +28,11 @@ router.patch(
   middlewares.verifyToken,
   controllers.patchDeviceFingerprintById
 )
+router.delete(
+  '/:id',
+  middlewares.stripToken,
+  middlewares.verifyToken,
+  controllers.deleteDeviceFingerprintById
+)
 
 module.exports = router

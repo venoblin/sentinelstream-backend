@@ -55,7 +55,7 @@ controllers.deleteUserById = async (req, res) => {
   try {
     const { id } = req.params
 
-    const deletedUser = await repo.updateUserById(id, {
+    const count = await repo.updateUserById(id, {
       email: `deleted-${id}@anonymized.local`,
       firstName: 'Deleted',
       lastName: 'User',
@@ -64,7 +64,7 @@ controllers.deleteUserById = async (req, res) => {
       isActive: false
     })
 
-    if (!deletedUser) {
+    if (!count) {
       return res.status(404).json({ error: 'Not Found' })
     }
 

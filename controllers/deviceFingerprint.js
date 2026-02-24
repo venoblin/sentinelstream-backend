@@ -77,4 +77,24 @@ controllers.patchDeviceFingerprintById = async (req, res) => {
   }
 }
 
+controllers.deleteDeviceFingerprintById = async (req, res) => {
+  try {
+    const { id } = req.params
+
+    const count = await repo.updateDeviceFingerprintById(id, {
+      ipAddress: 'REDACTED '
+    })
+
+    if (!count) {
+      return res.status(404).json({ error: 'Not found' })
+    }
+
+    return res
+      .status(200)
+      .json({ message: 'Successfully updated device fingerprint' })
+  } catch {
+    return res.status(500).json({ error: 'Internal server error' })
+  }
+}
+
 module.exports = controllers
