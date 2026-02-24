@@ -15,7 +15,7 @@ SentinelStream is a high-velocity fraud detection engine that processes and visu
 Table of Contents
 
 - [About The Project](#about-the-project)
-  - [DB Schema](#db-schema)
+  - [Database Schema](#database-schema)
   - [Built With](#built-with)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
@@ -32,9 +32,9 @@ Table of Contents
 
 SentinelStream is a high-velocity fraud detection engine that processes and visualizes banking transactions in real-time. Built with Node.js and WebSockets, it simulates a live financial network, applying heuristic algorithms to detect anomalies (like velocity attacks) in under 100ms and broadcasting alerts to a live React dashboard.
 
-### DB Schema
+### Database Schema
 
-<img src=".readme-images/db-schema.png" alt="DB schema" height="500px" />
+<img src=".readme-images/db-schema.png" alt="Database schema" height="500px" />
 
 ### Built With
 
