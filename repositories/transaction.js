@@ -26,4 +26,10 @@ repo.findTransactionById = async (id) => {
   return transaction
 }
 
+repo.updateTransactionById = async (id, update) => {
+  const [count] = await Transaction.update(update, { where: { id: id } })
+
+  return count
+}
+
 module.exports = repo

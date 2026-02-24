@@ -57,4 +57,20 @@ controllers.getTransactionById = async (req, res) => {
   }
 }
 
+controllers.patchTransactionById = async (req, res) => {
+  try {
+    const { id } = req.params
+
+    const count = await repo.updateTransactionById(id, req.body)
+
+    if (!count) {
+      return res.status(404).json({ error: 'Not found' })
+    }
+
+    return res.status(200).json({ message: 'Successfully updated transaction' })
+  } catch {
+    return res.status(500).json({ error: 'Internal server error' })
+  }
+}
+
 module.exports = controllers

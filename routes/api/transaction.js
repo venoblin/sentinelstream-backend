@@ -22,5 +22,11 @@ router.get(
   middlewares.verifyToken,
   controllers.getTransactionById
 )
+router.patch(
+  '/:id',
+  middlewares.stripToken,
+  middlewares.verifyToken,
+  controllers.patchTransactionById
+)
 
 module.exports = router
