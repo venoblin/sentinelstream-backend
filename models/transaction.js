@@ -13,6 +13,23 @@ module.exports = (sequelize, DataTypes) => {
           key: 'id'
         }
       },
+      deviceFingerprintId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: { model: 'device_fingerprints', key: 'id' }
+      },
+      transactionChannel: {
+        type: DataTypes.ENUM(
+          'WEB',
+          'MOBILE_APP',
+          'ATM',
+          'BRANCH',
+          'POS_TERMINAL',
+          'RECURRING_SERVER'
+        ),
+        allowNull: false,
+        defaultValue: 'WEB'
+      },
       amount: {
         type: DataTypes.DECIMAL,
         allowNull: false,
@@ -63,6 +80,11 @@ module.exports = (sequelize, DataTypes) => {
     Transaction.belongsTo(models.User, {
       foreignKey: 'userId',
       as: 'user'
+    })
+
+    Transaction.belongsTo(models.DeviceFingerprint, {
+      foreignKey: 'deviceFingerprintId',
+      as: 'deviceFingerprint'
     })
   }
 

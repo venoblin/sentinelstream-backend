@@ -51,6 +51,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'userId',
       as: 'user'
     })
+
+    DeviceFingerprint.hasMany(models.Transaction, {
+      foreignKey: 'deviceFingerprintId',
+      as: 'transactions'
+    })
   }
 
   return DeviceFingerprint
