@@ -62,6 +62,27 @@ controllers.getDeviceFingerprintById = async (req, res) => {
 controllers.patchDeviceFingerprintById = async (req, res) => {
   try {
     const { id } = req.params
+    const { trustScore, isBanned, lastSeen } = req.body
+
+    const updates = {}
+
+    if (trustScore !== undefined) {
+      updates.trustScore = trustScore
+    }
+
+    if (isBanned !== undefined) {
+      updates.isBanned = isBanned
+    }
+
+    if (lastSeen !== undefined) {
+      updates.lastSeen = lastSeen
+    }
+
+    if (!Object.keys(updates).length) {
+      return res
+        .status(400)
+        .json({ error: 'No valid fields provided for update' })
+    }
 
     const count = await repo.updateDeviceFingerprintById(id, req.body)
 

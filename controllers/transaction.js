@@ -60,8 +60,15 @@ controllers.getTransactionById = async (req, res) => {
 controllers.patchTransactionById = async (req, res) => {
   try {
     const { id } = req.params
+    const { status } = req.body
 
-    const count = await repo.updateTransactionById(id, req.body)
+    if (!status) {
+      return res
+        .status(400)
+        .json({ error: 'No valid fields provided for update' })
+    }
+
+    const count = await repo.updateTransactionById(id, { status: status })
 
     if (!count) {
       return res.status(404).json({ error: 'Not found' })
