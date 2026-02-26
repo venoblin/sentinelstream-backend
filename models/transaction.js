@@ -62,6 +62,15 @@ module.exports = (sequelize, DataTypes) => {
           'REVERSED'
         ),
         allowNull: false
+      },
+      riskScore: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+        validate: {
+          min: 0,
+          max: 100
+        }
       }
     },
     {

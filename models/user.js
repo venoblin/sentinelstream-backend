@@ -32,7 +32,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       riskScore: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 0,
+        validate: {
+          min: 0,
+          max: 100
+        }
       },
       role: {
         type: DataTypes.ENUM('user', 'analyst'),
