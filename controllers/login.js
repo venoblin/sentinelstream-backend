@@ -25,7 +25,16 @@ controllers.loginUser = async (req, res) => {
       const sanitizedUser = sanitizeUser(user)
 
       const token = createToken(payload)
-      return res.status(200).json({ user: sanitizedUser, token })
+      return res.status(200).json({
+        user: {
+          ...sanitizedUser,
+          transactions: user.transactions,
+          devices: user.devices,
+          createdFraudRules: user.createdFraudRules,
+          auditLogs: user.auditLogs
+        },
+        token
+      })
     }
 
     return res.status(401).json({ error: 'Unauthorized' })
