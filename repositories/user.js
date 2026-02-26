@@ -45,7 +45,10 @@ repo.updateUserById = async (id, update) => {
 }
 
 repo.findUserByEmail = async (email) => {
-  const user = await User.findOne({ where: { email: email } })
+  const user = await User.findOne({
+    include: include,
+    where: { email: email }
+  })
 
   return user
 }

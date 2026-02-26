@@ -70,7 +70,7 @@ module.exports = (sequelize, DataTypes) => {
 
     User.hasMany(models.DeviceFingerprint, {
       foreignKey: 'userId',
-      as: 'deviceFingerprints'
+      as: 'devices'
     })
   }
 
