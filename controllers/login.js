@@ -22,6 +22,8 @@ controllers.loginUser = async (req, res) => {
         role: user.role
       }
 
+      console.log('hi')
+
       const sanitizedUser = sanitizeUser(user)
 
       const token = createToken(payload)
