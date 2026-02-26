@@ -4,33 +4,20 @@ const middlewares = require('../../middlewares')
 
 const router = Router()
 
-router.post(
-  '/',
-  middlewares.stripToken,
-  middlewares.verifyToken,
-  controllers.postDeviceFingerprint
-)
-router.get(
-  '/',
-  middlewares.stripToken,
-  middlewares.verifyToken,
-  controllers.getAllDeviceFingerprints
-)
+router.post('/', middlewares.verifyToken, controllers.postDeviceFingerprint)
+router.get('/', middlewares.verifyToken, controllers.getAllDeviceFingerprints)
 router.get(
   '/:id',
-  middlewares.stripToken,
   middlewares.verifyToken,
   controllers.getDeviceFingerprintById
 )
 router.patch(
   '/:id',
-  middlewares.stripToken,
   middlewares.verifyToken,
   controllers.patchDeviceFingerprintById
 )
 router.delete(
   '/:id',
-  middlewares.stripToken,
   middlewares.verifyToken,
   controllers.deleteDeviceFingerprintById
 )

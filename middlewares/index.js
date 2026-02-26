@@ -21,20 +21,13 @@ middlewares.createToken = (payload) => {
   return token
 }
 
-middlewares.stripToken = (req, res, next) => {
-  try {
-    const token = req.headers['authorization'].split(' ')[1]
-    if (token) {
-      res.locals.token = token
-      return next()
-    }
-  } catch {
-    return res.status(500).json({ error: 'Internal server error' })
-  }
-}
-
 middlewares.verifyToken = (req, res, next) => {
-  const { token } = res.locals
+  const token = req.cookies.token
+
+  if (!token) {
+    return res.status(401).json({ error: 'Unauthorized: No token provided' })
+  }
+
   try {
     const payload = jwt.verify(token, APP_SECRET)
     if (payload) {

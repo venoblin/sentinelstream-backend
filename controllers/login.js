@@ -25,6 +25,14 @@ controllers.loginUser = async (req, res) => {
       const sanitizedUser = sanitizeUser(user)
 
       const token = createToken(payload)
+
+      res.cookie('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 24 * 60 * 60 * 1000
+      })
+
       return res.status(200).json({
         user: {
           ...sanitizedUser,
@@ -32,8 +40,7 @@ controllers.loginUser = async (req, res) => {
           devices: user.devices,
           createdFraudRules: user.createdFraudRules,
           auditLogs: user.auditLogs
-        },
-        token
+        }
       })
     }
 

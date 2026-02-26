@@ -4,29 +4,9 @@ const middlewares = require('../../middlewares')
 
 const router = Router()
 
-router.post(
-  '/',
-  middlewares.stripToken,
-  middlewares.verifyToken,
-  controllers.postTransaction
-)
-router.get(
-  '/',
-  middlewares.stripToken,
-  middlewares.verifyToken,
-  controllers.getAllTransactions
-)
-router.get(
-  '/:id',
-  middlewares.stripToken,
-  middlewares.verifyToken,
-  controllers.getTransactionById
-)
-router.patch(
-  '/:id',
-  middlewares.stripToken,
-  middlewares.verifyToken,
-  controllers.patchTransactionById
-)
+router.post('/', middlewares.verifyToken, controllers.postTransaction)
+router.get('/', middlewares.verifyToken, controllers.getAllTransactions)
+router.get('/:id', middlewares.verifyToken, controllers.getTransactionById)
+router.patch('/:id', middlewares.verifyToken, controllers.patchTransactionById)
 
 module.exports = router

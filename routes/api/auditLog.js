@@ -6,21 +6,18 @@ const router = Router()
 
 router.post(
   '/',
-  middlewares.stripToken,
   middlewares.verifyToken,
   middlewares.verifyAnalyst,
   controllers.postAuditLog
 )
 router.get(
   '/',
-  middlewares.stripToken,
   middlewares.verifyToken,
   middlewares.verifyAnalyst,
   controllers.getAllAuditLogs
 )
 router.get(
   '/:id',
-  middlewares.stripToken,
   middlewares.verifyToken,
   middlewares.verifyAnalyst,
   controllers.getAuditLogById
