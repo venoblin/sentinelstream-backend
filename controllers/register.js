@@ -1,6 +1,5 @@
 const repo = require('../repositories/user')
 const { hashPassword } = require('../middlewares')
-const { sanitizeUser } = require('../utils')
 
 const controllers = {}
 
@@ -10,12 +9,12 @@ controllers.registerUser = async (req, res) => {
 
     const hash = await hashPassword(password)
 
-    let user = await repo.createUser({
+    await repo.createUser({
       ...req.body,
       password: hash
     })
 
-    return res.status(201).json({ user: sanitizeUser(user) })
+    return res.status(201).json({ message: 'Successfully created user' })
   } catch {
     return res.status(500).json({ error: 'Internal server error' })
   }
