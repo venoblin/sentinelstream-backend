@@ -30,7 +30,8 @@ controllers.getAllAuditLogs = async (req, res) => {
     })
 
     return res.status(200).json({ auditLogs: cleanedAuditLogs })
-  } catch {
+  } catch (e) {
+    console.error(e)
     return res.status(500).json({ error: 'Internal server error' })
   }
 }

@@ -14,10 +14,9 @@ repo.createAuditLog = async (payload) => {
   return auditLog
 }
 
-repo.findAllAuditLogs = async (options) => {
+repo.findAllAuditLogs = async () => {
   const auditLogs = await AuditLog.findAll({
-    include: include,
-    where: { isActive: true, ...options }
+    include: include
   })
 
   return auditLogs

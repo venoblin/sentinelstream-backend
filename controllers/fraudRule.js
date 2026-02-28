@@ -52,6 +52,7 @@ controllers.getFraudRuleById = async (req, res) => {
     return res.status(200).json({
       fraudRule: {
         ...plainFraudRule,
+        id: encodeId(plainFraudRule.id),
         creator: sanitizeUser(plainFraudRule.creator)
       }
     })
