@@ -1,6 +1,6 @@
 const repo = require('../repositories/user')
 const { comparePassword, createToken } = require('../middlewares')
-const { sanitizeUser } = require('../utils')
+const { sanitizeUser, encodeId } = require('../utils')
 
 const controllers = {}
 
@@ -18,7 +18,7 @@ controllers.loginUser = async (req, res) => {
 
     if (isAuthenticated) {
       const payload = {
-        id: user.id,
+        id: encodeId(user.id),
         role: user.role
       }
 
