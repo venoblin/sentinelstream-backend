@@ -27,8 +27,7 @@ module.exports = (sequelize, DataTypes) => {
           'POS_TERMINAL',
           'RECURRING_SERVER'
         ),
-        allowNull: false,
-        defaultValue: 'WEB'
+        allowNull: false
       },
       amount: {
         type: DataTypes.DECIMAL,
