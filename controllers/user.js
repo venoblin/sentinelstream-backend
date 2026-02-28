@@ -17,7 +17,7 @@ controllers.getAllUsers = async (req, res) => {
 
 controllers.getUserById = async (req, res) => {
   try {
-    const { id } = req.params
+    const id = req.realId
 
     const user = await repo.findUserById(id)
 
@@ -37,7 +37,7 @@ controllers.getUserById = async (req, res) => {
 
 controllers.patchUserById = async (req, res) => {
   try {
-    const { id } = req.params
+    const id = req.realId
 
     const count = await repo.updateUserById(id, req.body)
 
@@ -53,7 +53,7 @@ controllers.patchUserById = async (req, res) => {
 
 controllers.deleteUserById = async (req, res) => {
   try {
-    const { id } = req.params
+    const id = req.realId
 
     const count = await repo.updateUserById(id, {
       email: `deleted-${id}@anonymized.local`,

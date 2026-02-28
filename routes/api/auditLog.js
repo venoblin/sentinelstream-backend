@@ -20,6 +20,7 @@ router.get(
   '/:id',
   middlewares.verifyToken,
   middlewares.verifyAnalyst,
+  middlewares.decodeRouteId,
   controllers.getAuditLogById
 )
 

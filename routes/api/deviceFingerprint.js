@@ -9,16 +9,19 @@ router.get('/', middlewares.verifyToken, controllers.getAllDeviceFingerprints)
 router.get(
   '/:id',
   middlewares.verifyToken,
+  middlewares.decodeRouteId,
   controllers.getDeviceFingerprintById
 )
 router.patch(
   '/:id',
   middlewares.verifyToken,
+  middlewares.decodeRouteId,
   controllers.patchDeviceFingerprintById
 )
 router.delete(
   '/:id',
   middlewares.verifyToken,
+  middlewares.decodeRouteId,
   controllers.deleteDeviceFingerprintById
 )
 

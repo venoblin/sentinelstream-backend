@@ -38,7 +38,7 @@ controllers.getAllAuditLogs = async (req, res) => {
 
 controllers.getAuditLogById = async (req, res) => {
   try {
-    const { id } = req.params
+    const id = req.realId
 
     const auditLog = await repo.findAuditLogById(id)
 

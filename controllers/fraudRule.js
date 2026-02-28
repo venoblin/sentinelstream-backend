@@ -39,7 +39,7 @@ controllers.getAllFraudRules = async (req, res) => {
 
 controllers.getFraudRuleById = async (req, res) => {
   try {
-    const { id } = req.params
+    const id = req.realId
 
     const fraudRule = await repo.findFraudRuleById(id)
 
@@ -63,7 +63,7 @@ controllers.getFraudRuleById = async (req, res) => {
 
 controllers.patchFraudRuleById = async (req, res) => {
   try {
-    const { id } = req.params
+    const id = req.realId
 
     const oldRule = await repo.findFraudRuleById(id)
 

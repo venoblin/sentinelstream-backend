@@ -1,3 +1,4 @@
+const { decodeId } = require('../utils')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
@@ -68,6 +69,20 @@ middlewares.verifyUserId = (req, res, next) => {
   } catch {
     return res.status(500).json({ error: 'Internal server error' })
   }
+}
+
+middlewares.decodeRouteId = (req, res, next) => {
+  if (req.params.id) {
+    const realId = decodeId(req.params.id)
+
+    if (!realId) {
+      return res.status(404).json({ error: 'Resource not found' })
+    }
+
+    req.realId = realId
+  }
+
+  next()
 }
 
 module.exports = middlewares

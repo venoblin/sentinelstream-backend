@@ -44,7 +44,7 @@ controllers.getAllDeviceFingerprints = async (req, res) => {
 
 controllers.getDeviceFingerprintById = async (req, res) => {
   try {
-    const { id } = req.params
+    const id = req.realId
 
     const deviceFingerprint = await repo.findDeviceFingerprintById(id)
 
@@ -68,7 +68,7 @@ controllers.getDeviceFingerprintById = async (req, res) => {
 
 controllers.patchDeviceFingerprintById = async (req, res) => {
   try {
-    const { id } = req.params
+    const id = req.realId
     const { trustScore, isBanned, lastSeen } = req.body
 
     const updates = {}
@@ -107,7 +107,7 @@ controllers.patchDeviceFingerprintById = async (req, res) => {
 
 controllers.deleteDeviceFingerprintById = async (req, res) => {
   try {
-    const { id } = req.params
+    const id = req.realId
 
     const count = await repo.updateDeviceFingerprintById(id, {
       ipAddress: 'REDACTED '

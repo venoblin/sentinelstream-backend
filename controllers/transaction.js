@@ -39,7 +39,7 @@ controllers.postTransaction = async (req, res) => {
 
 controllers.getTransactionById = async (req, res) => {
   try {
-    const { id } = req.params
+    const id = req.realId
 
     const transaction = await repo.findTransactionById(id)
 
@@ -63,7 +63,7 @@ controllers.getTransactionById = async (req, res) => {
 
 controllers.patchTransactionById = async (req, res) => {
   try {
-    const { id } = req.params
+    const id = req.realId
     const { status } = req.body
 
     if (!status) {

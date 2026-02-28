@@ -14,18 +14,21 @@ router.get(
   '/:id',
   middlewares.verifyToken,
   middlewares.verifyUserId,
+  middlewares.decodeRouteId,
   controllers.getUserById
 )
 router.patch(
   '/:id',
   middlewares.verifyToken,
   middlewares.verifyUserId,
+  middlewares.decodeRouteId,
   controllers.patchUserById
 )
 router.delete(
   '/:id',
   middlewares.verifyToken,
   middlewares.verifyUserId,
+  middlewares.decodeRouteId,
   controllers.deleteUserById
 )
 
