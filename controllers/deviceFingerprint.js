@@ -1,5 +1,5 @@
 const repo = require('../repositories/deviceFingerprint')
-const { sanitizeUser } = require('../utils')
+const { sanitizeUser, encodeId } = require('../utils')
 
 const controllers = {}
 
@@ -7,7 +7,12 @@ controllers.postDeviceFingerprint = async (req, res) => {
   try {
     const deviceFingerprint = await repo.createDeviceFingerprint(req.body)
 
-    return res.status(201).json({ deviceFingerprint: deviceFingerprint })
+    return res.status(201).json({
+      deviceFingerprint: {
+        ...deviceFingerprint,
+        id: encodeId(deviceFingerprint.id)
+      }
+    })
   } catch {
     return res.status(500).json({ error: 'Internal server error' })
   }
@@ -18,10 +23,11 @@ controllers.getAllDeviceFingerprints = async (req, res) => {
     const deviceFingerprints = await repo.findAllDeviceFingerprints()
 
     const cleanedDeviceFingerprints = deviceFingerprints.map((d) => {
-      const plainDeviceFingerprints = d.toJSON()
+      const plainDeviceFingerprint = d.toJSON()
 
       const deviceFingerprint = {
-        ...plainDeviceFingerprints,
+        ...plainDeviceFingerprint,
+        id: encodeId(plainDeviceFingerprint.id),
         user: sanitizeUser(d.user)
       }
 
@@ -51,6 +57,7 @@ controllers.getDeviceFingerprintById = async (req, res) => {
     return res.status(200).json({
       deviceFingerprint: {
         ...plainDeviceFingerprint,
+        id: encodeId(plainDeviceFingerprint.id),
         user: sanitizeUser(plainDeviceFingerprint.user)
       }
     })
@@ -112,7 +119,7 @@ controllers.deleteDeviceFingerprintById = async (req, res) => {
 
     return res
       .status(200)
-      .json({ message: 'Successfully updated device fingerprint' })
+      .json({ message: 'Successfully deleted device fingerprint' })
   } catch {
     return res.status(500).json({ error: 'Internal server error' })
   }

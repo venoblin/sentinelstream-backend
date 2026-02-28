@@ -1,5 +1,5 @@
 const repo = require('../repositories/transaction')
-const { sanitizeUser } = require('../utils')
+const { sanitizeUser, encodeId } = require('../utils')
 
 const controllers = {}
 
@@ -12,6 +12,7 @@ controllers.getAllTransactions = async (req, res) => {
 
       const transaction = {
         ...plainTransaction,
+        id: encodeId(plainTransaction.id),
         user: sanitizeUser(t.user)
       }
 
@@ -28,7 +29,9 @@ controllers.postTransaction = async (req, res) => {
   try {
     const transaction = await repo.createTransaction(req.body)
 
-    return res.status(201).json({ transaction: transaction })
+    return res
+      .status(201)
+      .json({ transaction: { ...transaction, id: encodeId(transaction.id) } })
   } catch {
     return res.status(500).json({ error: 'Internal server error' })
   }
@@ -49,6 +52,7 @@ controllers.getTransactionById = async (req, res) => {
     return res.status(200).json({
       transaction: {
         ...plainTransaction,
+        id: encodeId(plainTransaction.id),
         user: sanitizeUser(plainTransaction.user)
       }
     })
