@@ -15,16 +15,10 @@ controllers.checkSession = async (req, res) => {
       return res.status(404).json({ error: 'User not found' })
     }
 
-    const sanitizedUser = sanitizeUser(user)
+    const sanitizedUser = sanitizeUser(user.toJSON())
 
     return res.status(200).json({
-      user: {
-        ...sanitizedUser,
-        transactions: user.transactions,
-        devices: user.devices,
-        createdFraudRules: user.createdFraudRules,
-        auditLogs: user.auditLogs
-      }
+      user: sanitizedUser
     })
   } catch (error) {
     console.log(error)

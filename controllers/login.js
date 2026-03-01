@@ -34,13 +34,7 @@ controllers.loginUser = async (req, res) => {
       })
 
       return res.status(200).json({
-        user: {
-          ...sanitizedUser,
-          transactions: user.transactions,
-          devices: user.devices,
-          createdFraudRules: user.createdFraudRules,
-          auditLogs: user.auditLogs
-        }
+        user: sanitizedUser
       })
     }
 
