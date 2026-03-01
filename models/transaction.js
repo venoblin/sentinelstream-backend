@@ -64,11 +64,11 @@ module.exports = (sequelize, DataTypes) => {
       },
       locationCity: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
       },
       locationCountry: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
       },
       status: {
         type: DataTypes.ENUM(
