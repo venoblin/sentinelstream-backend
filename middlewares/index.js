@@ -59,7 +59,11 @@ middlewares.verifyAnalyst = (req, res, next) => {
 middlewares.verifyUserId = (req, res, next) => {
   try {
     const { payload } = res.locals
-    const { id } = req.params
+    const id = req.realId
+
+    if (req.method === 'GET' && payload && payload.role === 'analyst') {
+      return next()
+    }
 
     if (payload && payload.id === parseInt(id)) {
       return next()

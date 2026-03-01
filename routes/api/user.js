@@ -12,23 +12,23 @@ router.get(
 )
 router.get(
   '/:id',
+  middlewares.decodeRouteId,
   middlewares.verifyToken,
   middlewares.verifyUserId,
-  middlewares.decodeRouteId,
   controllers.getUserById
 )
 router.patch(
   '/:id',
+  middlewares.decodeRouteId,
   middlewares.verifyToken,
   middlewares.verifyUserId,
-  middlewares.decodeRouteId,
   controllers.patchUserById
 )
 router.delete(
   '/:id',
+  middlewares.decodeRouteId,
   middlewares.verifyToken,
   middlewares.verifyUserId,
-  middlewares.decodeRouteId,
   controllers.deleteUserById
 )
 

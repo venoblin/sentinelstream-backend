@@ -18,16 +18,16 @@ router.get(
 )
 router.get(
   '/:id',
+  middlewares.decodeRouteId,
   middlewares.verifyToken,
   middlewares.verifyAnalyst,
-  middlewares.decodeRouteId,
   controllers.getFraudRuleById
 )
 router.patch(
   '/:id',
+  middlewares.decodeRouteId,
   middlewares.verifyToken,
   middlewares.verifyAnalyst,
-  middlewares.decodeRouteId,
   controllers.patchFraudRuleById
 )
 
