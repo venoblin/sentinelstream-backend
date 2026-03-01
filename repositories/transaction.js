@@ -10,9 +10,10 @@ repo.createTransaction = async (payload) => {
   return transaction
 }
 
-repo.findAllTransactions = async () => {
+repo.findAllTransactions = async (options) => {
   const transactions = await Transaction.findAll({
-    include: include
+    include: include,
+    where: options
   })
 
   return transactions

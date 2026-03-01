@@ -12,12 +12,14 @@ router.post(
 )
 router.get(
   '/',
+  middlewares.decodeParamsIds,
   middlewares.verifyToken,
   middlewares.verifyAnalyst,
   controllers.getAllAuditLogs
 )
 router.get(
   '/:id',
+  middlewares.decodeParamsIds,
   middlewares.decodeRouteId,
   middlewares.verifyToken,
   middlewares.verifyAnalyst,

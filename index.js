@@ -19,6 +19,14 @@ app.use(
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
+app.use((req, res, next) => {
+  Object.defineProperty(req, 'query', {
+    ...Object.getOwnPropertyDescriptor(req, 'query'),
+    value: req.query,
+    writable: true
+  })
+  next()
+})
 
 app.use('/auth', authRoutes)
 app.use('/api', apiRoutes)

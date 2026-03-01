@@ -12,12 +12,15 @@ router.post(
 )
 router.get(
   '/',
+  middlewares.decodeParamsIds,
+  middlewares.decodeParamsIds,
   middlewares.verifyToken,
   middlewares.verifyAnalyst,
   controllers.getAllFraudRules
 )
 router.get(
   '/:id',
+  middlewares.decodeParamsIds,
   middlewares.decodeRouteId,
   middlewares.verifyToken,
   middlewares.verifyAnalyst,

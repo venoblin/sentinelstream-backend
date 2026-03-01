@@ -6,12 +6,14 @@ const router = Router()
 
 router.get(
   '/',
+  middlewares.decodeParamsIds,
   middlewares.verifyToken,
   middlewares.verifyAnalyst,
   controllers.getAllUsers
 )
 router.get(
   '/:id',
+  middlewares.decodeParamsIds,
   middlewares.decodeRouteId,
   middlewares.verifyToken,
   middlewares.verifyUserId,

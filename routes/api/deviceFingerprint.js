@@ -5,9 +5,15 @@ const middlewares = require('../../middlewares')
 const router = Router()
 
 router.post('/', middlewares.verifyToken, controllers.postDeviceFingerprint)
-router.get('/', middlewares.verifyToken, controllers.getAllDeviceFingerprints)
+router.get(
+  '/',
+  middlewares.decodeParamsIds,
+  middlewares.verifyToken,
+  controllers.getAllDeviceFingerprints
+)
 router.get(
   '/:id',
+  middlewares.decodeParamsIds,
   middlewares.decodeRouteId,
   middlewares.verifyToken,
   controllers.getDeviceFingerprintById

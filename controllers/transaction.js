@@ -5,7 +5,7 @@ const controllers = {}
 
 controllers.getAllTransactions = async (req, res) => {
   try {
-    const transactions = await repo.findAllTransactions()
+    const transactions = await repo.findAllTransactions(req.query)
 
     const cleanedTransactions = transactions.map((t) => {
       const plainTransaction = t.toJSON()

@@ -89,4 +89,21 @@ middlewares.decodeRouteId = (req, res, next) => {
   next()
 }
 
+middlewares.decodeParamsIds = (req, res, next) => {
+  const paramKeys = Object.keys(req.query)
+
+  if (paramKeys.length > 0) {
+    paramKeys.forEach((key) => {
+      if (
+        key.toLowerCase().indexOf('id') > -1 &&
+        typeof req.query[key] === 'string'
+      ) {
+        req.query[key] = decodeId(req.query[key])
+      }
+    })
+  }
+
+  next()
+}
+
 module.exports = middlewares
