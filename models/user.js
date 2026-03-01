@@ -1,7 +1,18 @@
 const { Model } = require('sequelize')
+const { encodeId } = require('../utils')
 
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {}
+  class User extends Model {
+    toJSON() {
+      const values = Object.assign({}, this.get())
+
+      if (values.id) {
+        values.id = encodeId(values.id)
+      }
+
+      return values
+    }
+  }
 
   User.init(
     {

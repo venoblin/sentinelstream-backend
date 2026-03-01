@@ -22,7 +22,7 @@ controllers.loginUser = async (req, res) => {
         role: user.role
       }
 
-      const sanitizedUser = sanitizeUser(user)
+      const sanitizedUser = sanitizeUser(user.toJSON())
 
       const token = createToken(payload)
 

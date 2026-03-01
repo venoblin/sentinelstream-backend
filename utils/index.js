@@ -24,10 +24,8 @@ utils.decodeId = (encodedString) => {
 }
 
 utils.sanitizeUser = (user) => {
-  const enocdedId = utils.encodeId(user.id)
-
   return {
-    id: enocdedId,
+    id: user.id,
     email: user.email,
     firstName: user.firstName,
     lastName: user.lastName,

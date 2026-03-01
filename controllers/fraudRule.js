@@ -1,5 +1,5 @@
 const repo = require('../repositories/fraudRule')
-const { sanitizeUser, encodeId } = require('../utils')
+const { sanitizeUser } = require('../utils')
 
 const controllers = {}
 
@@ -7,9 +7,7 @@ controllers.postFraudRule = async (req, res) => {
   try {
     const fraudRule = await repo.createFraudRule(req.body)
 
-    return res
-      .status(201)
-      .json({ fraudRule: { ...fraudRule, id: encodeId(fraudRule.id) } })
+    return res.status(201).json({ fraudRule: fraudRule })
   } catch {
     return res.status(500).json({ error: 'Internal server error' })
   }
@@ -24,8 +22,7 @@ controllers.getAllFraudRules = async (req, res) => {
 
       const fraudRule = {
         ...plainFraudRule,
-        id: encodeId(plainFraudRule.id),
-        creator: sanitizeUser(plainFraudRule.creator)
+        creator: sanitizeUser(plainFraudRule.creator.toJSON())
       }
 
       return fraudRule
@@ -52,8 +49,7 @@ controllers.getFraudRuleById = async (req, res) => {
     return res.status(200).json({
       fraudRule: {
         ...plainFraudRule,
-        id: encodeId(plainFraudRule.id),
-        creator: sanitizeUser(plainFraudRule.creator)
+        creator: sanitizeUser(plainFraudRule.creator.toJSON())
       }
     })
   } catch {

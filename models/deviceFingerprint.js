@@ -1,7 +1,22 @@
 const { Model } = require('sequelize')
+const { encodeId } = require('../utils')
 
 module.exports = (sequelize, DataTypes) => {
-  class DeviceFingerprint extends Model {}
+  class DeviceFingerprint extends Model {
+    toJSON() {
+      const values = Object.assign({}, this.get())
+
+      if (values.id) {
+        values.id = encodeId(values.id)
+      }
+
+      if (values.userId) {
+        values.userId = encodeId(values.userId)
+      }
+
+      return values
+    }
+  }
 
   DeviceFingerprint.init(
     {

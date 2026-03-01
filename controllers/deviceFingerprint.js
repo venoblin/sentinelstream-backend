@@ -1,5 +1,5 @@
 const repo = require('../repositories/deviceFingerprint')
-const { sanitizeUser, encodeId } = require('../utils')
+const { sanitizeUser } = require('../utils')
 
 const controllers = {}
 
@@ -7,12 +7,7 @@ controllers.postDeviceFingerprint = async (req, res) => {
   try {
     const deviceFingerprint = await repo.createDeviceFingerprint(req.body)
 
-    return res.status(201).json({
-      deviceFingerprint: {
-        ...deviceFingerprint,
-        id: encodeId(deviceFingerprint.id)
-      }
-    })
+    return res.status(201).json({ deviceFingerprint: deviceFingerprint })
   } catch {
     return res.status(500).json({ error: 'Internal server error' })
   }
@@ -27,8 +22,7 @@ controllers.getAllDeviceFingerprints = async (req, res) => {
 
       const deviceFingerprint = {
         ...plainDeviceFingerprint,
-        id: encodeId(plainDeviceFingerprint.id),
-        user: sanitizeUser(d.user)
+        user: sanitizeUser(d.user.toJSON())
       }
 
       return deviceFingerprint
@@ -57,8 +51,7 @@ controllers.getDeviceFingerprintById = async (req, res) => {
     return res.status(200).json({
       deviceFingerprint: {
         ...plainDeviceFingerprint,
-        id: encodeId(plainDeviceFingerprint.id),
-        user: sanitizeUser(plainDeviceFingerprint.user)
+        user: sanitizeUser(plainDeviceFingerprint.user.toJSON())
       }
     })
   } catch {

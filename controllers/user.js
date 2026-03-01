@@ -7,7 +7,10 @@ controllers.getAllUsers = async (req, res) => {
   try {
     const users = await repo.findAllUsers(req.query)
 
-    const cleanedUsers = users.map(sanitizeUser)
+    const cleanedUsers = users.map((u) => {
+      const user = u.toJSON()
+      return sanitizeUser(user)
+    })
 
     return res.status(200).json({ users: cleanedUsers })
   } catch {
@@ -25,12 +28,13 @@ controllers.getUserById = async (req, res) => {
       return res.status(404).json({ error: 'Not found' })
     }
 
-    const cleanedUser = sanitizeUser(user)
+    const cleanedUser = sanitizeUser(user.toJSON())
 
     return res
       .status(200)
       .json({ user: { ...cleanedUser, transactions: user.transactions } })
-  } catch {
+  } catch (e) {
+    console.error(e)
     return res.status(500).json({ error: 'Internal server error' })
   }
 }

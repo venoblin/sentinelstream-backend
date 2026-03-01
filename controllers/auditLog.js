@@ -7,9 +7,7 @@ controllers.postAuditLog = async (req, res) => {
   try {
     const auditLog = await repo.createAuditLog(req.body)
 
-    return res
-      .status(201)
-      .json({ auditLog: { ...auditLog, id: encodeId(auditLog.id) } })
+    return res.status(201).json({ auditLog: auditLog })
   } catch {
     return res.status(500).json({ error: 'Internal server error' })
   }
@@ -24,8 +22,7 @@ controllers.getAllAuditLogs = async (req, res) => {
 
       return {
         ...plainAuditLog,
-        id: encodeId(plainAuditLog.id),
-        analyst: sanitizeUser(plainAuditLog.analyst)
+        analyst: sanitizeUser(plainAuditLog.analyst.toJSON())
       }
     })
 
@@ -51,8 +48,7 @@ controllers.getAuditLogById = async (req, res) => {
     return res.status(200).json({
       auditLogs: {
         ...plainAuditLog,
-        id: encodeId(plainAuditLog.id),
-        analyst: sanitizeUser(plainAuditLog.analyst)
+        analyst: sanitizeUser(plainAuditLog.analyst.toJSON())
       }
     })
   } catch {

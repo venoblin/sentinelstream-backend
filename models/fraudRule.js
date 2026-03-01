@@ -1,7 +1,26 @@
 const { Model } = require('sequelize')
+const { encodeId } = require('../utils')
 
 module.exports = (sequelize, DataTypes) => {
-  class FraudRule extends Model {}
+  class FraudRule extends Model {
+    toJSON() {
+      const values = Object.assign({}, this.get())
+
+      if (values.id) {
+        values.id = encodeId(values.id)
+      }
+
+      if (values.creatorId) {
+        values.creatorId = encodeId(values.creatorId)
+      }
+
+      if (values.previousVersionId) {
+        values.previousVersionId = encodeId(values.previousVersionId)
+      }
+
+      return values
+    }
+  }
 
   FraudRule.init(
     {
