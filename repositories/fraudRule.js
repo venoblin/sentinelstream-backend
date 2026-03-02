@@ -2,7 +2,10 @@ const { FraudRule, User } = require('../models')
 
 const repo = {}
 
-const include = [{ model: User, as: 'creator' }]
+const include = [
+  { model: User, as: 'creator' },
+  { model: FraudRule, as: 'previousVersion' }
+]
 
 repo.createFraudRule = async (payload) => {
   const fraudRule = await FraudRule.create(payload)

@@ -1,8 +1,11 @@
-const { Transaction, User } = require('../models')
+const { Transaction, User, DeviceFingerprint } = require('../models')
 
 const repo = {}
 
-const include = [{ model: User, as: 'user' }]
+const include = [
+  { model: User, as: 'user' },
+  { model: DeviceFingerprint, as: 'deviceFingerprint' }
+]
 
 repo.createTransaction = async (payload) => {
   const transaction = await Transaction.create(payload)
