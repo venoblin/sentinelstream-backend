@@ -15,7 +15,7 @@ controllers.postDeviceFingerprint = async (req, res) => {
 
 controllers.getAllDeviceFingerprints = async (req, res) => {
   try {
-    const deviceFingerprints = await repo.findAllDeviceFingerprints()
+    const deviceFingerprints = await repo.findAllDeviceFingerprints(req.query)
 
     const cleanedDeviceFingerprints = deviceFingerprints.map((d) => {
       const plainDeviceFingerprint = d.toJSON()

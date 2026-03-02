@@ -94,10 +94,13 @@ middlewares.decodeParamsIds = (req, res, next) => {
 
   if (paramKeys.length > 0) {
     paramKeys.forEach((key) => {
-      if (
-        key.toLowerCase().indexOf('id') > -1 &&
-        typeof req.query[key] === 'string'
-      ) {
+      if (key.toLowerCase().indexOf('id') > -1) {
+        const realId = decodeId(req.query[key])
+
+        if (!realId) {
+          return res.status(404).json({ error: 'Resource not found' })
+        }
+
         req.query[key] = decodeId(req.query[key])
       }
     })

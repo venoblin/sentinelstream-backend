@@ -10,9 +10,10 @@ repo.createDeviceFingerprint = async (payload) => {
   return deviceFingerprint
 }
 
-repo.findAllDeviceFingerprints = async () => {
+repo.findAllDeviceFingerprints = async (options) => {
   const deviceFingerprints = await DeviceFingerprint.findAll({
-    include: include
+    include: include,
+    where: { isBanned: false, ...options }
   })
 
   return deviceFingerprints
